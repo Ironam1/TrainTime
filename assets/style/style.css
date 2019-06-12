@@ -1,0 +1,10 @@
+.container {
+    background: black;
+    color: chartreuse;
+    text-align: center;
+}
+
+.card {
+    font-size: 20px;
+    color: darkblue;
+}
