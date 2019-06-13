@@ -12,54 +12,63 @@ $(document).ready(function() {
   };
 
   firebase.initializeApp(firebaseConfig);
-
   var database = firebase.database();
-  // var provider = new firebase.auth.GithubAuthProvider();
-  // firebase
-  //   .auth()
-  //   .signInWithPopup(provider)
-  //   .then(function(result) {
-  //     // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-  //     var token = result.credential.accessToken;
-  //     // The signed-in user info.
-  //     var user = result.user;
-  //     // ...
-  //   })
-  //   .catch(function(error) {
-  //     // Handle Errors here.
-  //     var errorCode = error.code;
-  //     var errorMessage = error.message;
-  //     // The email of the user's account used.
-  //     var email = error.email;
-  //     // The firebase.auth.AuthCredential type that was used.
-  //     var credential = error.credential;
-  //     // ...
-  //   });
-  // firebase
-  //   .auth()
-  //   .signOut()
-  //   .then(function() {
-  //     // Sign-out successful.
-  //   })
-  //   .catch(function(error) {
-  //     // An error happened.
-  //   });
+  $("#sign_in").on("click", function() {
+  var provider = new firebase.auth.GithubAuthProvider();
+  
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(function(result) {
+        // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+        console.log(token);
+        console.log(user);
+      })
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+        // console.log(error.code);
+        // console.log(error.message);
+      });
+  });
+
+  $("#sign_out").on("click", function() {
+    firebase
+      .auth()
+      .signOut()
+      .then(function() {
+        // Sign-out successful.
+      })
+      .catch(function(error) {
+        // An error happened.
+      });
+  });
   database.ref().on("child_added", function(childSnapshot) {
-    console.log(childSnapshot.val().trainName);
-    console.log(childSnapshot.val().destination);
-    console.log(childSnapshot.val().frequency);
-    console.log(childSnapshot.val().firstDepart);
+    // console.log(childSnapshot.val().trainName);
+    // console.log(childSnapshot.val().destination);
+    // console.log(childSnapshot.val().frequency);
+    // console.log(childSnapshot.val().firstDepart);
     var frequency = childSnapshot.val().frequency;
     var firstTime = moment(childSnapshot.val().firstDepart, "hh:mm").subtract(
       1,
       "years"
     );
     var diffTime = moment().diff(moment(firstTime), "minutes");
-    console.log("time difference " + diffTime);
+    // console.log("time difference " + diffTime);
     var tRemaining = diffTime % frequency;
-    console.log("remainder " + tRemaining);
+    // console.log("remainder " + tRemaining);
     var tillNextTrain = frequency - tRemaining;
-    console.log("NEXT " + tillNextTrain);
+    // console.log("NEXT " + tillNextTrain);
     var nextArr = moment().add(tillNextTrain, "minutes");
     $("table")
       .find("tbody")
@@ -92,17 +101,17 @@ $(document).ready(function() {
       .trim();
     var firstTime = moment(firstDepart, "hh:mm").subtract(1, "years");
     var diffTime = moment().diff(moment(firstTime), "minutes");
-    console.log("time difference " + diffTime);
+    // console.log("time difference " + diffTime);
     var tRemaining = diffTime % frequency;
-    console.log("remainder " + tRemaining);
+    // console.log("remainder " + tRemaining);
     var tillNextTrain = frequency - tRemaining;
-    console.log("NEXT " + tillNextTrain);
+    // console.log("NEXT " + tillNextTrain);
     var nextArr = moment().add(tillNextTrain, "minutes");
-    console.log("ARRIVAL " + moment(nextArr).format("hh:mm"));
-    console.log(trainName);
-    console.log(destination);
-    console.log(firstDepart);
-    console.log(frequency);
+    // console.log("ARRIVAL " + moment(nextArr).format("hh:mm"));
+    // console.log(trainName);
+    // console.log(destination);
+    // console.log(firstDepart);
+    // console.log(frequency);
     // $("table")
     //   .find("tbody")
     //   .append(

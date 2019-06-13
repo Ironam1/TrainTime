@@ -34,9 +34,13 @@
     ></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js"></script>
     <script src="assets/java/logic.js"></script>
   </head>
   <body>
+    <button id="sign_in">Sign in with GitHub</button>
+    <button id="sign_out">Sign Out of Account</button>
+
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">Train Schedules</h1>
@@ -45,7 +49,7 @@
         </p>
       </div>
     </div>
-   
+
     <div class="card">
       <div class="card-header">
         Current Train Times
