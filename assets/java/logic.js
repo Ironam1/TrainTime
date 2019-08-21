@@ -14,8 +14,8 @@ $(document).ready(function() {
   firebase.initializeApp(firebaseConfig);
   var database = firebase.database();
   $("#sign_in").on("click", function() {
-  var provider = new firebase.auth.GithubAuthProvider();
-  
+    var provider = new firebase.auth.GithubAuthProvider();
+
     firebase
       .auth()
       .signInWithPopup(provider)
@@ -54,21 +54,17 @@ $(document).ready(function() {
       });
   });
   database.ref().on("child_added", function(childSnapshot) {
-    // console.log(childSnapshot.val().trainName);
-    // console.log(childSnapshot.val().destination);
-    // console.log(childSnapshot.val().frequency);
-    // console.log(childSnapshot.val().firstDepart);
     var frequency = childSnapshot.val().frequency;
     var firstTime = moment(childSnapshot.val().firstDepart, "hh:mm").subtract(
       1,
       "years"
     );
     var diffTime = moment().diff(moment(firstTime), "minutes");
-    // console.log("time difference " + diffTime);
+
     var tRemaining = diffTime % frequency;
-    // console.log("remainder " + tRemaining);
+
     var tillNextTrain = frequency - tRemaining;
-    // console.log("NEXT " + tillNextTrain);
+
     var nextArr = moment().add(tillNextTrain, "minutes");
     $("table")
       .find("tbody")
@@ -107,24 +103,7 @@ $(document).ready(function() {
     var tillNextTrain = frequency - tRemaining;
     // console.log("NEXT " + tillNextTrain);
     var nextArr = moment().add(tillNextTrain, "minutes");
-    // console.log("ARRIVAL " + moment(nextArr).format("hh:mm"));
-    // console.log(trainName);
-    // console.log(destination);
-    // console.log(firstDepart);
-    // console.log(frequency);
-    // $("table")
-    //   .find("tbody")
-    //   .append(
-    //     [
-    //       "<tr>",
-    //       "<td>" + trainName + "</td>",
-    //       "<td>" + destination + "</td>",
-    //       "<td>" + frequency + "</td>",
-    //       "<td>" + moment(nextArr).format("hh:mm") + "</td>",
-    //       "<td>" + tillNextTrain + "</td>",
-    //       "</tr>"
-    //     ].join("")
-    //   );
+
     database.ref().push({
       trainName: trainName,
       destination: destination,
