@@ -1,5 +1,5 @@
 # TrainTime
 
-On initial page load, a table with train times and next arrival based on the time the page was loaded will appear. User can add new trains to the database and they will display upon page refresh.
+This application demonstrates knowledge of Firebase. User will be displayed train arrivals with real time data. User can add their own train schedule and the arrival time will be calculated upon entry into database.
 
 I attempted to create a firebase sign in with github authentication but was unsuccessful.
