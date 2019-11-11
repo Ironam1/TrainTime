@@ -110,5 +110,10 @@ $(document).ready(function() {
       frequency: frequency,
       firstDepart: firstDepart
     });
+
+    $("#NewTrainName").clear();
+    $("#NewDestination").clear();
+    $("#NewFrequency").clear();
+    $("#NewFirstDeparture").clear();
   });
 });
