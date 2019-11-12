@@ -111,9 +111,9 @@ $(document).ready(function() {
       firstDepart: firstDepart
     });
 
-    $("#NewTrainName").clear();
-    $("#NewDestination").clear();
-    $("#NewFrequency").clear();
-    $("#NewFirstDeparture").clear();
+    $("#NewTrainName").val("");
+    $("#NewDestination").val("");
+    $("#NewFrequency").val("");
+    $("#NewFirstDeparture").val("");
   });
 });
